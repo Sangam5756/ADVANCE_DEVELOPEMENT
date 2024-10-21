@@ -1,27 +1,32 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
-import DashBoard from "./components/DashBoard";
-import Landing from "./components/Landing";
+
+const Landing = lazy(() => import("./components/Landing"));
+const DashBoard = lazy(() => import("./components/DashBoard"));
 
 const App = () => {
-
-
-  
-  // const handleClick = ()=>{
-  //   window.location.href = "/"
-  // }
-
-  // const dashboardRoute = ()=>{
-  //   window.location.href = "/dashboard"
-  // }
-
   return (
     <div>
       <BrowserRouter>
         <Approuter />
+
         <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/dashboard" element={<DashBoard />} />
+          <Route
+            path="/dashboard"
+            element={
+              <Suspense fallback={"loading..."}>
+                <DashBoard />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <Suspense fallback={"loading..."}>
+                <Landing  />
+              </Suspense>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>

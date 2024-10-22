@@ -1,57 +1,66 @@
-import React, { Suspense, lazy } from "react";
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
-
-const Landing = lazy(() => import("./components/Landing"));
-const DashBoard = lazy(() => import("./components/DashBoard"));
+import React, { memo, useContext, useState } from "react";
+import { CountContext } from "./contex";
 
 const App = () => {
+  const [count, setCount] = useState(0);
+  const [a, seta] = useState(0);
   return (
-    <div>
-      <BrowserRouter>
-        <Approuter />
-
-        <Routes>
-          <Route
-            path="/dashboard"
-            element={
-              <Suspense fallback={"loading..."}>
-                <DashBoard />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/"
-            element={
-              <Suspense fallback={"loading..."}>
-                <Landing  />
-              </Suspense>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
+    <div className="px-32 py-32 flex flex-col items-center justify-center">
+      {a}
+      <button onClick={() => seta(a + 1)}>inc</button>
+      <br />
+      <br />
+      <CountContext.Provider value={{ count, setCount }}>
+        <Hello />
+        <Count />
+      </CountContext.Provider>
     </div>
   );
 };
 
-//  useNavigate hook not work outside the browserRouter
-const Approuter = () => {
-  const navigate = useNavigate();
-
-  const dashboardRoute = () => {
-    navigate("/dashboard");
-  };
-
-  const handleClick = () => {
-    navigate("/");
-  };
+const Count = memo(() => {
+  console.log("count component");
   return (
-    <div>
-      <div className="flex gap-4">
-        <button onClick={dashboardRoute}>dashboard</button>
-        <button onClick={handleClick}>landing</button>
-      </div>
+    <div className="flex flex-col gap-5">
+      <RenderCount />
+      <Button />
     </div>
   );
-};
+});
+
+const Hello = memo(() => {
+  console.log("hello render");
+  return <div>sdsd</div>;
+});
+
+const RenderCount = memo(() => {
+  console.log("renderCOunt");
+  const { count } = useContext(CountContext);
+  return <div className="flex items-center justify-center">{count}</div>;
+});
+
+const Button = memo(() => {
+  console.log("Button component");
+  const { setCount, count } = useContext(CountContext);
+  return (
+    <div className="flex gap-3">
+      <button
+        onClick={() => {
+          setCount(count + 1);
+        }}
+      >
+        Increase
+      </button>
+
+      <button
+        onClick={() => {
+          setCount(count - 1);
+        }}
+      >
+        Decrese
+      </button>
+    </div>
+  );
+});
 
 export default App;

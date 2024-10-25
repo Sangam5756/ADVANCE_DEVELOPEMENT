@@ -1,24 +1,19 @@
-import React, { memo, useContext, useState } from "react";
-import { CountContext } from "./contex";
+import React, { useContext, useState } from "react";
+import { RecoilRoot, useRecoilState, useRecoilValue } from "recoil";
+import { countAtom } from "./store/atoms/count";
 
 const App = () => {
-  const [count, setCount] = useState(0);
-  const [a, seta] = useState(0);
   return (
-    <div className="px-32 py-32 flex flex-col items-center justify-center">
-      {a}
-      <button onClick={() => seta(a + 1)}>inc</button>
-      <br />
-      <br />
-      <CountContext.Provider value={{ count, setCount }}>
-        <Hello />
+    <div className="px-32   py-32 flex flex-col items-center justify-center">
+      <RecoilRoot>
         <Count />
-      </CountContext.Provider>
+      </RecoilRoot>
     </div>
   );
 };
 
-const Count = memo(() => {
+
+const Count = () => {
   console.log("count component");
   return (
     <div className="flex flex-col gap-5">
@@ -26,24 +21,24 @@ const Count = memo(() => {
       <Button />
     </div>
   );
-});
+};
 
 
 
-const Hello = memo(() => {
-  console.log("hello render");
-  return <div>sdsd</div>;
-});
 
-const RenderCount = memo(() => {
-  console.log("renderCOunt");
-  const { count } = useContext(CountContext);
-  return <div className="flex items-center justify-center">{count}</div>;
-});
+const RenderCount = () => {
+  const count = useRecoilValue(countAtom);
+  return (
+    <div className="flex  items-center justify-center">
+      <p>{count}</p>
+    </div>
+  );
+};
 
-const Button = memo(() => {
-  console.log("Button component");
-  const { setCount, count } = useContext(CountContext);
+
+
+const Button = () => {
+  const [count, setCount] = useRecoilState(countAtom);
   return (
     <div className="flex gap-3">
       <button
@@ -63,6 +58,6 @@ const Button = memo(() => {
       </button>
     </div>
   );
-});
+};
 
 export default App;

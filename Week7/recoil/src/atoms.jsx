@@ -1,18 +1,34 @@
-import { atom } from "recoil";
+import { atom, selector, useRecoilValue } from "recoil";
 
-export const networkAtom = atom({
+export const notificationAtom = atom({
   key: "networkAtom",
-  default: 104,
+  default: selector({
+    key: "networkAtomSelector",
+    get: async () => {
+      const res = await fetch(
+        "https://mocki.io/v1/71e49c68-8dfa-4334-bfa9-2b24cd77b1fc"
+      );
+      const res1 = await res.json();
+
+      return res1;
+    },
+  }),
 });
-export const jobsAtom = atom({
-  key: "jobsAtom",
-  default: 0,
-});
-export const NotificationsAtom = atom({
-  key: "NotificationAtoms",
-  default: 12,
-});
-export const MessagingAtom = atom({
-  key: "messagingAtom",
-  default: 0,
+
+
+
+
+export const totalNotification = selector({
+  key: "totalNotify",
+  get: ({ get }) => {
+    const notification1 = get(notificationAtom);
+
+    const total =
+      notification1.network +
+      notification1.jobsAtomCount +
+      notification1.notification +
+      notification1.messages;
+
+    return total;
+  },
 });

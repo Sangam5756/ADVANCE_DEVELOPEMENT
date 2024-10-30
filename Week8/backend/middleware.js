@@ -1,17 +1,20 @@
-import { JWT_SECRET } from "./config";
+import { JWT_SECRET } from "./config.js";
 import jwt from "jsonwebtoken";
 
 export const authMiddleWare = (req, res, next) => {
-  const authHeader = req.header.authrization;
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    console.log("checking auth")
+  const authHeader = req.headers.authorization;
+  if (!authHeader || !authHeader.startsWith("Bearer")) {
     return res.status(403).json({});
   }
 
-  const token = authHeader.split("")[1];
+  const token = authHeader.split(" ")[1];
+  console.log(token,"inside the auth");
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
+    console.log(decoded)
     if (decoded) {
-      req.userid = decoded.userid;
+      req.userId = decoded.userId;
       next();
     }
   } catch (error) {

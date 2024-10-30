@@ -2,7 +2,7 @@ import express from "express";
 import zod from "zod";
 import { User } from "../models/user.js";
 import { JWT_SECRET } from "../config.js";
-
+import jwt from "jsonwebtoken";
 const userRouter = express.Router();
 
 const signupSchema = zod.object({
@@ -21,16 +21,19 @@ userRouter.post("/signup", async (req, res) => {
   const body = req.body;
 
   const { success } = signupSchema.safeParse(req.body);
+  console.log(success, req.body);
   if (!success) {
     return res.json({
       message: "Email is already taken / Incorrect inputs",
     });
   }
+
   const user = await User.findOne({
     username: body.username,
   });
 
-  if (user._id) {
+  console.log(user);
+  if (user !== null) {
     return res.json({
       message: "Email is already taken /incorrect inputs",
     });
@@ -111,11 +114,10 @@ userRouter.get("/bulk", async (req, res) => {
     user: users.map((user) => ({
       id: user._id,
       username: user.username,
-      firstName: user.firstname,
-      lastName: user.lastname,
+      firstName: user.firstName,
+      lastName: user.lastName,
     })),
   });
 });
-
 
 export default userRouter;

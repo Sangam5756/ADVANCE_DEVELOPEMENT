@@ -1,6 +1,5 @@
 import express from "express";
 import { dbConnect } from "./db.js";
-import mainRouter from "./routes/bank.js";
 import cors from "cors";
 import userRouter from "./routes/user.js";
 import bankRouter from "./routes/bank.js";

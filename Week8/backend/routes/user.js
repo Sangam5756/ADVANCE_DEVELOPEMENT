@@ -44,6 +44,7 @@ userRouter.post("/signup", async (req, res) => {
   res.json({
     message: "User created Successfully",
     token: token,
+    username: dbUser.username,
   });
 });
 
@@ -69,6 +70,7 @@ userRouter.post("/signin", async (req, res) => {
 
     res.json({
       token: token,
+      username: user.username,
     });
     return;
   }

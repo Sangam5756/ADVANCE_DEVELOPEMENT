@@ -10,9 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const pg_1 = require("pg");
-const client = new pg_1.Client({
-    connectionString: 'postgresql://cohort_owner:sBDHJ1qxX8jS@ep-proud-brook-a5zz0g5c.us-east-2.aws.neon.tech/cohort?sslmode=require'
-});
+const client = new pg_1.Client({ connectionString: 'postgresql://cohort_owner:sBDHJ1qxX8jS@ep-proud-brook-a5zz0g5c.us-east-2.aws.neon.tech/cohort?sslmode=require' });
 function createUserTable() {
     return __awaiter(this, void 0, void 0, function* () {
         yield client.connect();
@@ -76,7 +74,7 @@ function getdata() {
             yield client.connect();
             const getQuery = "SELECT * FROM users";
             const result = yield client.query(getQuery);
-            console.log("insertion success", result);
+            console.log("insertion success", result.rows);
         }
         catch (error) {
             console.log("error during insertion", error);

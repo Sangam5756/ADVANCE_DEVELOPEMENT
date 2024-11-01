@@ -1,9 +1,8 @@
 import {Client} from "pg";
 
-const client = new Client({
-    connectionString:'postgresql://cohort_owner:sBDHJ1qxX8jS@ep-proud-brook-a5zz0g5c.us-east-2.aws.neon.tech/cohort?sslmode=require'
 
-})
+
+const client = new Client({connectionString:'postgresql://cohort_owner:sBDHJ1qxX8jS@ep-proud-brook-a5zz0g5c.us-east-2.aws.neon.tech/cohort?sslmode=require'})
 
 
 
@@ -93,7 +92,7 @@ async function getdata() {
 
         const getQuery = "SELECT * FROM users"
         const result  = await client.query(getQuery);
-        console.log("insertion success",result)
+        console.log("insertion success",result.rows)
 
 
     } catch (error) {

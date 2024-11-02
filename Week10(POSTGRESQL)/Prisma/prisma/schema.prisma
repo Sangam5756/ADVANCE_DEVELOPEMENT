@@ -27,3 +27,8 @@ model Todo {
   done        Boolean @default(false)
   description String?
 }
+model login {
+  id          Int     @id @default(autoincrement())
+  userName String? @unique
+  password       String
+}

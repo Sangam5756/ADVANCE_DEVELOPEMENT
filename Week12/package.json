@@ -11,6 +11,7 @@
   "description": "",
   "dependencies": {
     "@types/pg": "^8.11.10",
-    "pg": "^8.13.1"
+    "pg": "^8.13.1",
+    "typescript": "^5.6.3"
   }
 }

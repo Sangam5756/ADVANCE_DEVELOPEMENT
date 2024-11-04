@@ -8,5 +8,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "@types/pg": "^8.11.10",
+    "pg": "^8.13.1"
+  }
 }

@@ -1,53 +1,41 @@
-import { Client } from "pg";
+import { PrismaClient } from "@prisma/client";
 
-
-const client = new Client({
-    connectionString: "postgresql://postgres:sangam@123@localhost/postgres"
-})
-
-async function createUserTable() {
-    await client.connect();
-
-    const result = await client.query(`
-        CREATE TABLE addresses (
-    id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL,
-    city VARCHAR(100) NOT NULL,
-    country VARCHAR(100) NOT NULL,
-    street VARCHAR(255) NOT NULL,
-    pincode VARCHAR(20),
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-);`
-    )
-    console.log(result);
-}
-
-// createUserTable();
+const prisma = new PrismaClient();
 
 
 
-async function get() {
-    await client.connect();
+async function createTodo(userId: number, title: string, description: string) {
 
-    const result = await client.query(`
-       SELECT *  FROM addresses;`)
-    console.log(result)
-}
+    const todo = await prisma.todo.create({
+        data: {
+            userId,
+            description,
+            title,
+        }
+    });
 
-// get();
-async function insertdata()
+    console.log(todo)
 
-{
-    await client.connect();
-
-    const result = await client.query(`
-       INSERT INTO addresses (user_id, city, country, street, pincode)
-VALUES (3, 'INDIA', 'INDIAN', 'Kharadi Pune', '10001');`)
-    console.log(result)
 
 }
 
+createTodo(1, "go to gym", "go to gym and do 10 pushups")
 
 
-insertdata();
+// async function createTodo(username: string, password: string, firstName: string, lastName: string) {
+
+//     const todo = await prisma.user.create({
+//         data: {
+//             username,
+//             password,
+//             firstName,
+//             lastName
+//         }
+//     });
+
+//     console.log(todo)
+
+
+// }
+
+// createTodo("sangam", "sangam@wsad", "sangam", "mundhe")

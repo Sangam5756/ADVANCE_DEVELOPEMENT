@@ -9,44 +9,30 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const pg_1 = require("pg");
-const client = new pg_1.Client({
-    connectionString: "postgresql://postgres:sangam@123@localhost/postgres"
-});
-function createUserTable() {
+const client_1 = require("@prisma/client");
+const prisma = new client_1.PrismaClient();
+function createTodo(userId, title, description) {
     return __awaiter(this, void 0, void 0, function* () {
-        yield client.connect();
-        const result = yield client.query(`
-        CREATE TABLE addresses (
-    id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL,
-    city VARCHAR(100) NOT NULL,
-    country VARCHAR(100) NOT NULL,
-    street VARCHAR(255) NOT NULL,
-    pincode VARCHAR(20),
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-);`);
-        console.log(result);
+        const todo = yield prisma.todo.create({
+            data: {
+                userId,
+                description,
+                title,
+            }
+        });
+        console.log(todo);
     });
 }
-// createUserTable();
-function get() {
-    return __awaiter(this, void 0, void 0, function* () {
-        yield client.connect();
-        const result = yield client.query(`
-       SELECT *  FROM addresses;`);
-        console.log(result);
-    });
-}
-// get();
-function insertdata() {
-    return __awaiter(this, void 0, void 0, function* () {
-        yield client.connect();
-        const result = yield client.query(`
-       INSERT INTO addresses (user_id, city, country, street, pincode)
-VALUES (3, 'INDIA', 'INDIAN', 'Kharadi Pune', '10001');`);
-        console.log(result);
-    });
-}
-insertdata();
+createTodo(1, "go to gym", "go to gym and do 10 pushups");
+// async function createTodo(username: string, password: string, firstName: string, lastName: string) {
+//     const todo = await prisma.user.create({
+//         data: {
+//             username,
+//             password,
+//             firstName,
+//             lastName
+//         }
+//     });
+//     console.log(todo)
+// }
+// createTodo("sangam", "sangam@wsad", "sangam", "mundhe")

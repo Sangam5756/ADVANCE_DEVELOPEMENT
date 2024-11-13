@@ -29,11 +29,11 @@ blogRouter.use("/*", async (c, next) => {
             await next();
         } else {
             c.status(403);
-            return c.json({ error: "unauthorized" });
+            return c.json({ error: "please login" });
         }
     } catch (error) {
         c.status(403);
-        return c.json({ error: "unauthorized" });
+        return c.json({ error: "please login" });
 
     }
 });
@@ -66,11 +66,11 @@ blogRouter.post("/", async (c) => {
             }
         })
 
-        return c.json({ id: post.id })
+        return c.json({ id: post.id, message: "publish successfully" })
 
     } catch (e) {
         c.status(411);
-        return c.text("Invalid");
+        return c.json({ message: e });
 
     }
 
@@ -102,7 +102,7 @@ blogRouter.put("/", async (c) => {
             }
         })
 
-        return c.json({ id: post.id })
+        return c.json({ id: post.id, message: "Updated Successfully" })
 
     } catch (e) {
         c.status(411);
@@ -125,9 +125,20 @@ blogRouter.get("/bulk", async (c) => {
 
     console.log("inside the blog")
     try {
-        const post = await prisma.post.findMany()
-        console.log("inside the blog",post)
-        return c.json({ post:post })
+        const post = await prisma.post.findMany({
+            select: {
+                content: true,
+                title: true,
+                id: true,
+                author: {
+                    select: {
+                        name: true
+                    }
+                }
+            }
+        })
+        console.log("inside the blog", post)
+        return c.json({ post })
 
     } catch (e) {
         c.status(411);
@@ -149,6 +160,16 @@ blogRouter.get("/:id", async (c) => {
         const post = await prisma.post.findFirst({
             where: {
                 id: String(id)
+            },
+            select: {
+                content: true,
+                title: true,
+                id: true,
+                author: {
+                    select: {
+                        name: true
+                    }
+                }
             }
 
         })

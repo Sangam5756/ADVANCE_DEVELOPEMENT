@@ -10,8 +10,8 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://postgres:sangam@123@localhost/postgres"
-}
+  url      = env("DATABASE_URL")
+  }
 
 model User {
   id    Int     @id @default(autoincrement())

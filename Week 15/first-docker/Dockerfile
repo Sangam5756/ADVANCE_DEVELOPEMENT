@@ -2,14 +2,21 @@ FROM node:20-alpine
 
 WORKDIR /app 
 
-COPY . .   
 
-
+  
+COPY package* .
+COPY ./prisma .
 RUN npm install
-RUN npm run build
 RUN npx prisma generate
 
 
+COPY . .   
+RUN npm run build
+
+
+
 EXPOSE 3000  
+
+
 CMD ["node","dist/index.js"]
 

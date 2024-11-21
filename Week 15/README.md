@@ -101,3 +101,14 @@ docker ->
 
 - docker volume create volume_database
 - docker run -v volume_database:/data/db -p 27017:27017 mongo
+
+
+
+
+
+## docker network
+
+1. create the network -> docker create network network_name
+2. start the newtwork -> docker run -d -v volume_database:/data/db --name mongo --network my_custom_network -p 27017:27017 mongo
+
+3.start the service   -> docker run -d -p 3000:3000 --name backend --network my_custom_network image_Tag

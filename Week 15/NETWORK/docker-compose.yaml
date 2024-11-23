@@ -1,0 +1,31 @@
+version: '3.3'
+
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - volume_database:/data/db
+    networks:
+      - my_custom_network
+
+  mongo_app:
+    image: mongo_app  # This should use the locally built image
+    container_name: mongo_app
+    depends_on:
+      - mongodb
+    ports:
+      - "3000:3000"
+    environment:
+      MONGO_URL: "mongodb://mongodb:27017"
+    networks:
+      - my_custom_network
+
+volumes:
+  volume_database: {}
+
+networks:
+  my_custom_network:
+    driver: bridge

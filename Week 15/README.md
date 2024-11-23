@@ -111,4 +111,17 @@ docker ->
 1. create the network -> docker create network network_name
 2. start the newtwork -> docker run -d -v volume_database:/data/db --name mongo --network my_custom_network -p 27017:27017 mongo
 
-3.start the service   -> docker run -d -p 3000:3000 --name backend --network my_custom_network image_Tag
+3. start the service   -> docker run -d -p 3000:3000 --name backend --network my_custom_network image_Tag
+
+- EXTRA COMMANDS
+1. List Docker Networks
+docker network ls
+2. Inspect a Docker Network
+  docker network inspect <network-name>
+3. Connect a Container to a Network
+docker network connect <network-name> <container-name or container-id>
+
+
+
+# Docker Compose(YML)
+

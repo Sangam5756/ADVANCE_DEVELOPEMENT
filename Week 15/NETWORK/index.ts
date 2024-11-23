@@ -9,9 +9,9 @@ app.use(express.json());
 // Endpoint to create a user
 app.post('/user', async (req: Request, res: Response) => {
   const { name, age, email } = req.body;
-  const newUser = new User({ name, age, email });
-
+  
   try {
+    const newUser = new User({ name, age, email });
     const savedUser = await newUser.save();
     res.status(201).send({ message: 'User created', user: savedUser });
   } catch (err) {

@@ -2,4 +2,4 @@
 
 - [AUTHENTICATION USING NEXT-AUTH](./next-auth/README.md)
 - [TURBO AND MONO REPO](./repo/README.md)
-- [AUTHENTICATION USING COOKIES](./AuthUsingCookies/README.md)
+- [AUTHENTICATION USING COOKIES](./AuthUsingCookies/Readme.md)

@@ -100,7 +100,7 @@ app.delete("/delete/:id", async (req, res) => {
 
 mongoose
   .connect(
-    "mongodb+srv://sangammunde3:69ZEogw3grwMXHyk@cluster0.7e0zod4.mongodb.net/todo"
+    process.env.MONGO_URL
   )
   .then(() => {
     app.listen(5000, () => {

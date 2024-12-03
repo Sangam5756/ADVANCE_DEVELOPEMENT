@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --port 3001",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@repo/db": "*",
+    "@repo/ui": "*",
     "@repo/store": "*",
     "bcrypt": "^5.1.1",
     "next": "15.0.3",

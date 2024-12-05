@@ -1,20 +1,13 @@
-"use client"
+import { getServerSession } from "next-auth";
+import { redirect } from 'next/navigation'
+import { authOptions } from "./lib/auth";
 
-import {Appbar} from "@repo/ui/appbar";
-import React from "react";
-import { signOut, signIn, useSession } from "next-auth/react";
-const page = () => {
-  const session = useSession();
-  console.log(session)
-  return (
-    <div>
-      <Appbar
-        onSignin={signIn}
-        onSignout={signOut}
-        user={session?.data?.user}
-      />
-    </div>
-  );
-};
-
-export default page;
+export default async function Page() {
+  const session = await getServerSession(authOptions);
+  if (session?.user) {
+    redirect('/dashboard')
+  } else {
+    redirect('/api/auth/signin')
+  }
+  
+}

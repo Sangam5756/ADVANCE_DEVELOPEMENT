@@ -16,7 +16,7 @@ wss.on("connection", (ws) => {
     ws.on("error", console.error)
 
     ws.on("message", (data, isbinary) => {
-
+        console.log(wss)
         wss.clients.forEach((client) => {
             if (client.readyState === WebSocket.OPEN) {
                 client.send(data, { binary: isbinary })
@@ -25,10 +25,7 @@ wss.on("connection", (ws) => {
 
     });
     console.log("user count", ++usercount);
-ws.close("close",()=>{
-    console.log("user count", --usercount);
 
-})
     // ws.send("Hello From The Server")
 });
 

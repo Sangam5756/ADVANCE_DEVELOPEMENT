@@ -19,7 +19,8 @@ app.post("/generate-otp", (req, res) => {
         //6 digit otp generate
         const otp = Math.floor(100000 + Math.random() * 900000).toString();
         otpStore[email] = otp;
-        res.status(200).json({ message: "Otp generated and logged", otp: otp });
+        console.log(`otp for ${email}:${otp}`);
+        res.status(200).json({ message: "Otp generated and logged" });
     }
     catch (error) {
         res.send(500).json({ message: "Internal Server Error" });

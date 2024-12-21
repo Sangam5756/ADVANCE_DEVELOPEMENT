@@ -1,0 +1,2 @@
+- [VERTICAL-HORIZONTAL-SCALING](./Readme.md)
+- [AWS-SCALE-UP-DOWN](./AWS.Readme.md)

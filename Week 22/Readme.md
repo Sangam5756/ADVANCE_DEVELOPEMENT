@@ -28,3 +28,7 @@ Now imagine your café becomes super popular, and even the biggest coffee machin
 2. Now, each machine can serve a portion of the customers, and together, they handle the rush more efficiently.
 
    This is horizontal scaling—you distribute the load across multiple systems (coffee machines). If demand keeps increasing, you can just add more machines.
+
+
+
+

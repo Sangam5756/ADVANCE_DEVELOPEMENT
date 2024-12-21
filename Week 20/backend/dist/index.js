@@ -4,15 +4,33 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const express_rate_limit_1 = require("express-rate-limit");
 const app = (0, express_1.default)();
 app.listen(3000);
 app.use(express_1.default.json());
+// Rate limiter configuration
+const otpLimiter = (0, express_rate_limit_1.rateLimit)({
+    windowMs: 5 * 60 * 1000, // 5 minutes
+    max: 3, // Limit each IP to 3 OTP requests per windowMs
+    message: 'Too many requests, please try again after 5 minutes',
+    standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+    legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+});
+const passwordResetLimiter = (0, express_rate_limit_1.rateLimit)({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 5, // Limit each IP to 5 password reset requests per windowMs
+    message: 'Too many password reset attempts, please try again after 15 minutes',
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+// Apply the rate limiting middleware to all requests.
 // const otpStore :{ [key: string]: string } = {};
 const otpStore = {};
 console.log(otpStore);
-app.post("/generate-otp", (req, res) => {
+app.post("/generate-otp", otpLimiter, (req, res) => {
     try {
         const { email } = req.body;
+        const ip = req.ip;
         if (!email) {
             return res.status(400).json({ message: "Email is Required" });
         }
@@ -26,7 +44,7 @@ app.post("/generate-otp", (req, res) => {
         res.send(500).json({ message: "Internal Server Error" });
     }
 });
-app.post("/reset-password", (req, res) => {
+app.post("/reset-password", passwordResetLimiter, (req, res) => {
     const { email, otp, newPassword } = req.body;
     if (!email || !otp || !newPassword) {
         res.status(400).json({ message: "Email, otp and newPassword are required" });

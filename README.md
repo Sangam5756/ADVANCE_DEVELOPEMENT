@@ -1,21 +1,19 @@
-# Table of Contents
-
-- [Week 4](./Week%204/week4.md){:target="_blank"}
-- [Week 5](./Week%205/week5.md){:target="_blank"}
-- [Week 6](./Week%206/week6.md){:target="_blank"}
-- [Week 7](./Week%207/week7.md){:target="_blank"}
-- [Week 8](./Week%208/week8.md){:target="_blank"}
-- [Week 9](./Week%209/week9.md){:target="_blank"}
-- [Week 10](./Week%2010/week10.md){:target="_blank"}
-- [Week 11](./Week%2011/week11.md){:target="_blank"}
-- [Week 12](./Week%2012/week12.md){:target="_blank"}
-- [Week 13](./Week%2013/week13.md){:target="_blank"}
-- [Week 14](./Week%2014/week14.md){:target="_blank"}
-- [Week 15](./Week%2015/week15.md){:target="_blank"}
-- [Week 16](./Week%2016/week16.md){:target="_blank"}
-- [Week 17](./Week%2016/week17.md){:target="_blank"}
-- [Week 18](./Week%2018/week18.md){:target="_blank"}
-- [Week 19](./Week%2019/week19.md){:target="_blank"}
-- [Week 20](./Week%2020/week20.md){:target="_blank"}
-- [Week 21](./Week%2021/week21.md){:target="_blank"}
-- [Week 22](./Week%2022/week22.md){:target="_blank"}
+- <a href="./Week%204/week4.md" target="_blank">Week 4</a>
+- <a href="./Week%205/week5.md" target="_blank">Week 5</a>
+- <a href="./Week%206/week6.md" target="_blank">Week 6</a>
+- <a href="./Week%207/week7.md" target="_blank">Week 7</a>
+- <a href="./Week%208/week8.md" target="_blank">Week 8</a>
+- <a href="./Week%209/week9.md" target="_blank">Week 9</a>
+- <a href="./Week%2010/week10.md" target="_blank">Week 10</a>
+- <a href="./Week%2011/week11.md" target="_blank">Week 11</a>
+- <a href="./Week%2012/week12.md" target="_blank">Week 12</a>
+- <a href="./Week%2013/week13.md" target="_blank">Week 13</a>
+- <a href="./Week%2014/week14.md" target="_blank">Week 14</a>
+- <a href="./Week%2015/week15.md" target="_blank">Week 15</a>
+- <a href="./Week%2016/week16.md" target="_blank">Week 16</a>
+- <a href="./Week%2016/week17.md" target="_blank">Week 17</a>
+- <a href="./Week%2018/week18.md" target="_blank">Week 18</a>
+- <a href="./Week%2019/week19.md" target="_blank">Week 19</a>
+- <a href="./Week%2020/week20.md" target="_blank">Week 20</a>
+- <a href="./Week%2021/week21.md" target="_blank">Week 21</a>
+- <a href="./Week%2022/week22.md" target="_blank">Week 22</a>

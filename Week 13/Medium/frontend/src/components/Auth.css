@@ -1,0 +1,73 @@
+/* Container styles */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  /* Centering content */
+  .content {
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Form wrapper styles */
+  .form-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Header styles */
+  .header {
+    padding: 0 40px;
+  }
+  
+  .title {
+    font-size: 1.875rem; /* 3xl equivalent */
+    font-weight: bold;
+  }
+  
+  .subtext {
+    color: #94a3b8; /* Slate-400 equivalent */
+  }
+  
+  .link {
+    padding-left: 5px;
+    text-decoration: underline;
+    color: inherit; /* Matches current text color */
+  }
+  
+  /* Input styles */
+  .inputs {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Button styles */
+  .submit-btn {
+    width: 100%;
+    margin-top: 28px;
+    background-color: #000000; /* Black */
+    color: #ffffff; /* White */
+    font-size: 0.875rem; /* Sm equivalent */
+    font-weight: 500;
+    border-radius: 0.375rem; /* Rounded-lg */
+    padding: 10px 20px; /* px-5 py-2.5 */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background-color: #1a1a1a; /* Slightly lighter black */
+  }
+  
+  .submit-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px #a3a3a3; /* Focus ring */
+  }
+  
+  .submit-btn:active {
+    background-color: #2a2a2a; /* Slightly lighter black */
+  }
+  

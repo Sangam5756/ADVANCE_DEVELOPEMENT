@@ -3,7 +3,7 @@ import  { useEffect, useState } from "react";
 import { BACKEND_URL } from "../config";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-
+import "./Publish.css"
 const Publish = () => {
   interface post {
     title: string;
@@ -42,14 +42,15 @@ const Publish = () => {
     }
   };
 
+
   return (
-    <div className="flex justify-center max-w-screen-xl">
-      <div className="w-full max-w-screen-md">
-        <div className="mb-3 mt-3">
+    <div className="post-container">
+      <div className="post-form">
+        <div className="input-group">
           <input
             type="text"
-            className="outline-none py-2 border rounded-md p-2  w-full"
-            placeholder="title of post"
+            className="input-field"
+            placeholder="Title of post"
             onChange={(e) => {
               setPost((c) => ({
                 ...c,
@@ -58,9 +59,9 @@ const Publish = () => {
             }}
           />
         </div>
-        <div>
+        <div className="textarea-group">
           <textarea
-            className=" w-full rounded-md outline-none border p-2 "
+            className="textarea-field"
             rows={10}
             placeholder="Write Article"
             onChange={(e) => {
@@ -74,7 +75,7 @@ const Publish = () => {
         <button
           onClick={handlePublish}
           type="button"
-          className="text-white mt-4 bg-blue-700 hover:bg-blue-800    font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+          className="publish-btn"
         >
           Publish Post
         </button>
